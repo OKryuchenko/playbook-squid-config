@@ -1,6 +1,6 @@
 копирует файлы конфигурации на прокси сервера squid
 
-запукск плэйбука
+запукск плэйбука   
 ansible-playbook -i inventory/test.yml site.yml   
 ansible-playbook -i inventory/prod.yml site.yml
 
