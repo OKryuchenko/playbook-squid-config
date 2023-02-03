@@ -6,4 +6,4 @@ ansible-playbook -i inventory/prod.yml site.yml
 
 запускаем плэйбук от учетки ansible
 
-# v01 | копирует файлы конфигурации из локальной папки ./files/URLacls/black_list.acl
+v01 | копирует файлы конфигурации из локальной папки ./files/URLacls/
