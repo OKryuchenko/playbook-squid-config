@@ -1,0 +1,44 @@
+---
+prod:
+  hosts:
+    skp-test-debian02:
+      ansible_host: 10.40.0.240
+      ansible_connection: ssh
+      ansible_user: okryuchenko
+      # ansible_host: 192.168.1.22
+    skp-vpn01:
+      ansible_host: 10.33.10.197
+    skp-proxy:
+      ansible_host: 10.40.0.217
+    skp-proxy01:
+      ansible_host: 10.40.0.218
+    skl-proxy01:
+      ansible_host: 10.33.10.195
+ 
+       
+# all:
+#   hosts:
+#     skp-jenkins-master01:
+#       ansible_host: 10.40.0.242
+#     skp-jenkins-agent01:
+#       ansible_host: 10.40.0.243
+#   children:
+#     jenkins:
+#       children:
+#         jenkins_masters:
+#           hosts:
+#             skp-jenkins-master01:
+#         jenkins_agents:
+#           hosts:
+#               skp-jenkins-agent01:
+  children:
+    squd-proxy:
+      hosts:
+         skp-proxy01:
+         skl-proxy01:
+  vars:
+    ansible_connection_type: paramiko
+    ansible_user: ansible      
+
+
+

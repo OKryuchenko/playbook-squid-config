@@ -1,0 +1,14 @@
+---
+test:
+  hosts:
+    skp-test-debian02:
+      ansible_host: 10.40.0.240
+      # ansible_connection: ssh
+      # ansible_user: okryuchenko
+      # ansible_host: 192.168.1.22
+    localhost:
+      ansible_host: localhost
+      ansible_connection: local
+vars:
+    ansible_connection_type: paramiko
+    ansible_user: ansible

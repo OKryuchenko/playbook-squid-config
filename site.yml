@@ -1,0 +1,40 @@
+---
+- name: Change ACLs files | SQUID PROXY
+  hosts: squd-proxy
+  # hosts: skl-proxy01
+  tasks:
+    - name: Print hostname 
+      ansible.builtin.debug:
+        var: ansible_facts["hostname"]
+    - name: Print os_family
+      ansible.builtin.debug:  
+        var: ansible_facts["os_family"]
+
+    - name: Copy file with owner and permissions
+      become: true
+      ansible.builtin.copy:
+        src: ./files/URLacls/
+        dest: /etc/squid/URLacls/
+        owner: proxy
+        group: proxy
+        mode: '0644'
+        force: true
+      register: copy_file
+
+      # - name: Copy file with owner and permissions
+      # become: true
+      # ansible.builtin.copy:
+      #   src: ./files/URLacls/black_list.acl
+      #   dest: /etc/squid/URLacls/black_list.acl
+      #   owner: proxy
+      #   group: proxy
+      #   mode: '0644'
+      #   force: true
+      # register: copy_file
+
+    - name: Restert servise | squid
+      become: true
+      ansible.builtin.service:
+        name: squid
+        state: restarted
+      when: copy_file is changed
